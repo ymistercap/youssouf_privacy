@@ -12,11 +12,18 @@ contract PrivacyTest is Test {
     uint256 public constant STARTING_USER_BALANCE = 10 ether;
 
     function setUp() public {
+    bytes32[3] memory initData = [
+        bytes32(0x0),
+        bytes32(0x0),
+        bytes32(0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef)
+    ];
 
-        privacyContract = new Privacy();
+    privacyContract = new Privacy(initData);
 
-        vm.deal(USER, STARTING_USER_BALANCE);
-    }
+    vm.deal(USER, STARTING_USER_BALANCE);
+}
+
+
 
     function run() external{
         vm.prank(USER);
